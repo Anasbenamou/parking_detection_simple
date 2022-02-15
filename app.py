@@ -53,21 +53,21 @@ def deploy_model(image_path):
 
 
 if __name__ == '__main__':
+  st.header("Free Parking lot places ")
+  st.write("Choose an image:")
 
-
-	st.header("Free Parking lot places ")
-	st.write("Choose an image:")
-
-	uploaded_file = st.file_uploader("Choose an image...")
+  uploaded_file = st.file_uploader("Choose an image...")
 	
-	if(uploaded_file != None):
-		image = Image.open(uploaded_file)	
-		cv2.imwrite("img.jpg",np.asarray(image))
-		st.image(image, caption='Input Image', use_column_width=True)
-
-		img,oc,no_oc,cars_img = deploy_model("img.jpg")
-		st.write("Total sport scaned by this camera is {}".format(no_oc+oc))
-		st.write("Number of free spots :{}".format(no_oc))
-		st.write("Number of Occupied spots : {}".format(oc))
-
-		st.image(img, caption='Output Image', use_column_width=True)
+  if(uploaded_file != None):
+    image = Image.open(uploaded_file)	
+    cv2.imwrite("img.jpg",np.asarray(image))
+    st.image(image, caption='Input Image', use_column_width=True)
+    img,oc,no_oc,cars_img = deploy_model("img.jpg")
+    st.write("Total sport scaned by this camera is {}".format(no_oc+oc))
+    st.write("Number of free spots :{}".format(no_oc))
+    st.write("Number of Occupied spots : {}".format(oc))
+    st.image(img, caption='Output Image', use_column_width=True) 
+    st.write("cars in the parking lot : {}".format(oc))
+    with st.container():
+      for col in st.columns(1):
+          col.image(cars_img,width = 100)
