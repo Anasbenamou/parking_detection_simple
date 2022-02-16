@@ -63,7 +63,7 @@ if __name__ == '__main__':
     cv2.imwrite("img.jpg",np.asarray(image))
     st.image(image, caption='Input Image', use_column_width=True)
     img,oc,no_oc,cars_img = deploy_model("img.jpg")
-    st.write("Total sport scaned by this camera is {}".format(no_oc+oc))
+    st.write("Total spots scanned by this camera is {}".format(no_oc+oc))
     st.write("Number of free spots :{}".format(no_oc))
     st.write("Number of Occupied spots : {}".format(oc))
     st.image(img, caption='Output Image', use_column_width=True) 
